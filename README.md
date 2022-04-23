@@ -6,12 +6,12 @@
 1. [Install DevStack to your Linux System if you haven't already.](https://docs.openstack.org/DevStack/latest/)
 
 1. Ensure your DevStack cloud is installed properly and its services are running:
-    ```
+    ```sh
     sudo systemctl status "devstack@*"
     ```
 
 1. Create the [clouds.yaml](https://docs.openstack.org/python-openstackclient/yoga/configuration/index.html#clouds-yaml) configuration file for `openstacksdk`:
-    ```
+    ```sh
     cd ~ # your normal user account you use, not the user account with the DevStack environment installed
     mkdir .config
     touch clouds.yaml
@@ -19,7 +19,7 @@
     This file provides the list of OpenStack clouds the `openstack` module (within `openstacksdk`) can connect to.
 
 1. Paste the following [config](https://docs.openstack.org/openstacksdk/latest/user/guides/connect_from_config.html#default-location) info into 'clouds.yaml'. Update the configuration based on your DevStack login credentials:
-    ``` 
+    ```yaml 
     clouds:
         devstack:
             auth:
@@ -36,7 +36,7 @@
 1. [Connect to your DevStack cloud using the openstack module in openstacksdk](https://opendev.org/openstack/openstacksdk/src/branch/master/README.rst):
 
     In your python3 environment with `openstacksdk` installed:
-    ```
+    ```python3
     import openstack
     openstack.enable_logging(debug=True) # will show HTTP request info when we get the list of servers
     conn = openstack.connect(cloud='devstack')
